@@ -30,6 +30,7 @@ public class TampilSpanduk extends javax.swing.JFrame {
     }
     
     public void isi(){
+        // memberikan data spanduk sebagai contoh isi data dari tabel
         spanduklist.add(new Spanduk("SPD01K","Flexy China" , "Direct", 65000, "Indoor" ));
     }
     
@@ -219,8 +220,9 @@ public class TampilSpanduk extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahActionPerformed
+        // tombol tambah jika kita tekan akan menuju ke frame TambahEditSpanduk
         TambahEditSpanduk TESpanduk = new TambahEditSpanduk();
-        TESpanduk.setVisible(true);
+        TESpanduk.setVisible(true); // memanggil frame TambahEditSpanduk
     }//GEN-LAST:event_btnTambahActionPerformed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
@@ -238,6 +240,7 @@ public class TampilSpanduk extends javax.swing.JFrame {
     }//GEN-LAST:event_btnKeluarActionPerformed
 
     private void btnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusActionPerformed
+        // tombol hapus beserta validasi dari data yang ingin dihapus dari tabel
         DefaultTableModel  dtmspd = (DefaultTableModel) tblSpanduk.getModel();
         int dialogButton = JOptionPane.YES_NO_OPTION;
         int dialogResult = JOptionPane.showConfirmDialog(this, "Hapus Data Ini", "Hapus", dialogButton);
@@ -258,6 +261,7 @@ public class TampilSpanduk extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCariActionPerformed
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
+        // ketika menekan tombol edit maka data spanduk pada tabel akan di bawa ke frame TambahEditSpanduk untuk di edit
         int i = tblSpanduk.getSelectedRow();
         if(i>=0) {
             TableModel dtmspd = tblSpanduk.getModel();
