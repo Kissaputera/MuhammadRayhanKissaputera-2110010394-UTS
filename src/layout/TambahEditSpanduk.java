@@ -1,6 +1,9 @@
 package layout;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 public class TambahEditSpanduk extends javax.swing.JFrame {
@@ -14,7 +17,15 @@ public class TambahEditSpanduk extends javax.swing.JFrame {
     public TambahEditSpanduk() {
         initComponents();
         status = 0;
-        
+        // Mendapatkan ukuran layar
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        // Menghitung posisi x dan y agar frame muncul di tengah layar
+        int x = (screenSize.width - getWidth()) / 2;
+        int y = (screenSize.height - getHeight()) / 2;
+        // Menetapkan lokasi frame
+        setLocation(x, y);
+        // Mengatur operasi penutupan default
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);    
     }
     
     public TambahEditSpanduk(Spanduk spanduk){
