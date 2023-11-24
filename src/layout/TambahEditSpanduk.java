@@ -1,5 +1,6 @@
 package layout;
 
+import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 
 public class TambahEditSpanduk extends javax.swing.JFrame {
@@ -57,9 +58,10 @@ public class TambahEditSpanduk extends javax.swing.JFrame {
         scrollpaneTA = new javax.swing.JScrollPane();
         taPMK = new javax.swing.JTextArea();
         btnSimpan = new javax.swing.JButton();
-        btnReset = new javax.swing.JButton();
+        btnBatal = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         tfKD = new javax.swing.JTextField();
+        btnReset = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -82,6 +84,12 @@ public class TambahEditSpanduk extends javax.swing.JFrame {
 
         lbl3.setText("Harga Per Meter");
 
+        tfHPM.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tfHPMKeyTyped(evt);
+            }
+        });
+
         lbl4.setText("Pemakaian");
 
         taPMK.setColumns(20);
@@ -95,14 +103,21 @@ public class TambahEditSpanduk extends javax.swing.JFrame {
             }
         });
 
+        btnBatal.setText("Batal");
+        btnBatal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBatalActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Kode Spanduk");
+
         btnReset.setText("Reset");
         btnReset.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnResetActionPerformed(evt);
             }
         });
-
-        jLabel1.setText("Kode Spanduk");
 
         javax.swing.GroupLayout pnlAksiLayout = new javax.swing.GroupLayout(pnlAksi);
         pnlAksi.setLayout(pnlAksiLayout);
@@ -113,8 +128,10 @@ public class TambahEditSpanduk extends javax.swing.JFrame {
                 .addGroup(pnlAksiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(pnlAksiLayout.createSequentialGroup()
                         .addComponent(btnSimpan)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnReset))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnReset)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
+                        .addComponent(btnBatal))
                     .addGroup(pnlAksiLayout.createSequentialGroup()
                         .addGroup(pnlAksiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lbl1)
@@ -157,6 +174,7 @@ public class TambahEditSpanduk extends javax.swing.JFrame {
                 .addGap(27, 27, 27)
                 .addGroup(pnlAksiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSimpan)
+                    .addComponent(btnBatal)
                     .addComponent(btnReset))
                 .addContainerGap())
         );
@@ -207,7 +225,9 @@ public class TambahEditSpanduk extends javax.swing.JFrame {
 
     private void cbbJSItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbbJSItemStateChanged
         String Pilihan = cbbJS.getSelectedItem().toString();
-        
+        /*di bawah ini merupakan logika switch dimana jika kita sudah pilih Jenis Spanduk
+          yang ada di Combo Box, maka secara otomatis Text Field Bahan Spanduk akan ikut terisi juga
+        */
         switch (Pilihan) {
         case "Flexy China":
             tfBS.setText("Direct");
@@ -242,8 +262,27 @@ public class TambahEditSpanduk extends javax.swing.JFrame {
     }
     }//GEN-LAST:event_cbbJSItemStateChanged
 
+    private void btnBatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBatalActionPerformed
+        ResetInput(); // memanggil method untuk mengosongkan data yang sedang diisi
+        dispose();
+    }//GEN-LAST:event_btnBatalActionPerformed
+
+    private void tfHPMKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfHPMKeyTyped
+        // validasi untuk Text Field Harga Per Meter dimana hanya boleh menginputkan data berupa angka saja
+        char c = evt.getKeyChar();
+        if (! ((Character.isDigit(c) ||
+                (c == KeyEvent.VK_BACK_SPACE) ||
+                (c == KeyEvent.VK_DELETE))
+                )) {
+            getToolkit().beep();
+            JOptionPane.showMessageDialog(null, "Masukkan Hanya Angka 0-9!");
+            evt.consume();
+        }
+    }//GEN-LAST:event_tfHPMKeyTyped
+
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
         ResetInput(); // memanggil method untuk mengosongkan data yang sedang diisi
+        tfKD.requestFocus();
     }//GEN-LAST:event_btnResetActionPerformed
 
     /**
@@ -282,6 +321,7 @@ public class TambahEditSpanduk extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBatal;
     private javax.swing.JButton btnReset;
     private javax.swing.JButton btnSimpan;
     private javax.swing.JComboBox<String> cbbJS;
