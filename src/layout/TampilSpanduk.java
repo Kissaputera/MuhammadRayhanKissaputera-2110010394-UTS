@@ -31,7 +31,7 @@ public class TampilSpanduk extends javax.swing.JFrame {
     
     public void isi(){
         // memberikan data spanduk sebagai contoh isi data dari tabel
-        spanduklist.add(new Spanduk("SPD01K","Flexy China" , "Direct", 65000, "Indoor" ));
+        spanduklist.add(new Spanduk("SPD1K","Flexy China" , "Direct", 65000, "Indoor" ));
     }
     
     public void TampilDataSpanduk(String cari) {
@@ -276,7 +276,7 @@ public class TampilSpanduk extends javax.swing.JFrame {
             TambahEditSpanduk tambahEditSpanduk = new TambahEditSpanduk(spanduk);
             tambahEditSpanduk.setVisible(true);
         } else {
-            JOptionPane.showMessageDialog(null, "Pilih Data yang Ingin Diubah");
+            JOptionPane.showMessageDialog(null, "Pilih Data yang Ingin Diedit!");
         }
     }//GEN-LAST:event_btnEditActionPerformed
 

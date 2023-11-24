@@ -17,15 +17,7 @@ public class TambahEditSpanduk extends javax.swing.JFrame {
     public TambahEditSpanduk() {
         initComponents();
         status = 0;
-        // Mendapatkan ukuran layar
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        // Menghitung posisi x dan y agar frame muncul di tengah layar
-        int x = (screenSize.width - getWidth()) / 2;
-        int y = (screenSize.height - getHeight()) / 2;
-        // Menetapkan lokasi frame
-        setLocation(x, y);
-        // Mengatur operasi penutupan default
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);    
+        setLocationRelativeTo(null);    
     }
     
     public TambahEditSpanduk(Spanduk spanduk){
@@ -39,6 +31,7 @@ public class TambahEditSpanduk extends javax.swing.JFrame {
 //      tfHPM.setText(spanduk.getHpermspanduk());
         taPMK.setText(spanduk.getPmkspanduk());
         tfKD.setEditable(false);
+        setLocationRelativeTo(null);
     }
    
     public void ResetInput() {
@@ -223,13 +216,15 @@ public class TambahEditSpanduk extends javax.swing.JFrame {
         } else {
             int listdata = 0;
             for (Spanduk sp: TampilSpanduk.spanduklist){
-                if (sp.getKdspanduk() == tfKD.getText()) {
+                if (sp.getKdspanduk().equals(kdspanduk)) {
                     listdata = TampilSpanduk.spanduklist.indexOf(sp);
                     break;
                 }
             } 
-            JOptionPane.showMessageDialog(null, "Data Yang Diubah Berhasil Disimpan!");
-            TampilSpanduk.spanduklist.set(listdata, new Spanduk(kdspanduk, jnsspanduk, bhnspanduk, hpermspanduk, pmkspanduk));   
+            
+            TampilSpanduk.spanduklist.set(listdata, new Spanduk(kdspanduk, jnsspanduk, bhnspanduk, hpermspanduk, pmkspanduk));
+            JOptionPane.showMessageDialog(null, "Data Yang Diedit Berhasil Disimpan!");
+            
         }
         dispose();
     }//GEN-LAST:event_btnSimpanActionPerformed
