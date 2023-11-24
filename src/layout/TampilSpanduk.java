@@ -1,6 +1,5 @@
 package layout;
 
-import java.sql.Blob;
 import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
